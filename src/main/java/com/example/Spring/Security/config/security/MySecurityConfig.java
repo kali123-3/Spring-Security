@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 @Configuration
-public class MySecurityConfig {
+public class MySecurityConfig  {
 
    /* @Bean
     UserDetailsService userDetailsService(){
@@ -33,6 +34,19 @@ public class MySecurityConfig {
         users.add(new User("admin", passwordEncoder().encode("password2"), authorities2));
         InMemoryUserDetailsManager inMemoryUserDetailsManager = new InMemoryUserDetailsManager(users);
         return inMemoryUserDetailsManager;
+    }*/
+/*
+User detail manager permet de de creer user
+    @Bean
+    public UserDetailsManager users(DataSource dataSource) {
+        UserDetails user = User.withDefaultPasswordEncoder()
+                .username("user")
+                .password("password")
+                .roles("USER")
+                .build();
+        JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
+        users.createUser(user);
+        return users;
     }*/
 
     @Bean
@@ -50,11 +64,6 @@ public class MySecurityConfig {
         http.addFilterBefore(new MySecurityFilter(), UsernamePasswordAuthenticationFilter.class);
        return http.build();
     }
-
-
-
-
-
 
 
 }

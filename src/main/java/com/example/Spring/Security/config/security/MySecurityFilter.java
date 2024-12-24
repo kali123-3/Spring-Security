@@ -1,8 +1,8 @@
 package com.example.Spring.Security.config.security;
 
 import jakarta.servlet.*;
-import jakarta.servlet.http.HttpServlet;
-import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.io.IOException;
 
@@ -11,6 +11,7 @@ import java.io.IOException;
  * extends OncePerRequestFilter
  */
 public class MySecurityFilter implements Filter {
+    UserDetails userDetailsService;
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         System.out.println("MySecurityFilter before");
